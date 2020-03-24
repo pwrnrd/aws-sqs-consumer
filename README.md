@@ -1,4 +1,4 @@
-# aws-sqs-consumer
+# AWS SQS Consumer
 
 A AWS SQS message consumer written in Typescript based on the great work of the contributors to [bbc/sqs-consumer](https://github.com/bbc/sqs-consumer)
 
@@ -8,20 +8,20 @@ A AWS SQS message consumer written in Typescript based on the great work of the 
 
 Build SQS-based applications without the boilerplate. Just define an async function that handles the SQS message processing.
 
-## Installation
+## 1. Installation
 
 ```bash
 npm install pwrnrd/aws-sqs-consumer
 ```
 
-## Usage
+## 2. Usage
 
 There are two ways to set-up the SQS Consumer:
 
 -   Simple
 -   Extensive
 
-### Simple
+### 2.1 Simple
 
 The easiest way to start listening for messages is by using `SQSSimpleConsumer`. This consumer starts listening for messages automatically and logs the output of important events. SQSSimpleConsumer is an easy way to start, but is highly opinionated.
 
@@ -52,7 +52,7 @@ const simpleConsumer = new SQSSimpleConsumer(handleMessages, queue, aSQSConfig);
 simpleConsumer.stop();
 ```
 
-### Extensive
+### 2.2 Extensive
 
 If you want more control over when the consumer should start listening for messages or you want to change the way the SQS consumer responds to events, you should use `SQSConsumer`.
 
@@ -97,16 +97,16 @@ aSQSConsumer.start();
 aSQSConsumer.stop();
 ```
 
-### How it works
+## 3. How it works
 
 -   The queue is polled continuously for messages using [long polling](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html).
 -   Messages are deleted from the queue once the handler function has completed successfully.
 -   Throwing an error (or returning a rejected promise) from the handler function will cause the message to be left on the queue. An [SQS redrive policy](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html) can be used to move messages that cannot be processed to a dead letter queue.
 -   By default messages are processed one at a time – a new message won't be received until the first one has been processed. To process messages in parallel, use the `batchSize` option [detailed below](#options).
 
-### Consumer API
+## 4. Consumer API
 
-##### Consumer Options
+### 4.1 Consumer Options
 
 -   `queueUrl` - _String_ - The SQS queue URL
 -   `region` - _String_ - The AWS region (default `eu-west-1`)
@@ -123,19 +123,19 @@ aSQSConsumer.stop();
 -   `pollingWaitTimeMs` - _Number_ - The duration (in milliseconds) to wait before repolling the queue (defaults to `0`).
 -   `sqs` - _Object_ - An optional [AWS SQS](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SQS.html) object to use if you need to configure the client manually
 
-#### `consumer.start()`
+#### 4.1.1 `consumer.start()`
 
 Start polling the queue for messages.
 
-#### `consumer.stop()`
+#### 4.1.2 `consumer.stop()`
 
 Stop polling the queue for messages.
 
-#### `consumer.isRunning`
+#### 4.1.3 `consumer.isRunning`
 
 Returns the current polling state of the consumer: `true` if it is actively polling, `false` if it is not.
 
-#### Consumer Events
+### 4.2 Consumer Events
 
 Each consumer is an [`EventEmitter`](http://nodejs.org/api/events.html) and emits the following events:
 
@@ -150,19 +150,20 @@ Each consumer is an [`EventEmitter`](http://nodejs.org/api/events.html) and emit
 | `stopped`            | None               | Fired when the consumer finally stops its work.                                                                               |
 | `empty`              | None               | Fired when the queue is empty (All messages have been consumed).                                                              |
 
-### Credentials
+## 5. Credentials
 
 By default the consumer will look for AWS credentials in the places [specified by the AWS SDK](http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Setting_AWS_Credentials). The simplest option is to export your credentials as environment variables:
 
 ```bash
 export AWS_SECRET_ACCESS_KEY=...
 export AWS_ACCESS_KEY_ID=...
+export AWS_REGION=...
 ```
 
-### AWS IAM Permissions
+## 6. AWS IAM Permissions
 
 Consumer will receive and delete messages from the SQS queue. Ensure `sqs:ReceiveMessage` and `sqs:DeleteMessage` access is granted on the queue being consumed.
 
-### Contributing
+## 7. Contributing
 
 See contributing [guildlines](https://github.com/pwrnrd/aws-sqs-consumer/blob/master/CONTRIBUTING.md)
