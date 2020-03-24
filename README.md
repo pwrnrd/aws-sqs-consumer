@@ -2,7 +2,7 @@
 
 A AWS SQS message consumer written in Typescript based on the great work of the contributors to [bbc/sqs-consumer](https://github.com/bbc/sqs-consumer)
 
-[![Build Status](https://travis-ci.org/pwrnrd/aws-sqs-consumer.svg)](https://travis-ci.org/pwrnrd/sqs-consumer)
+[![Build Status](https://travis-ci.org/pwrnrd/aws-sqs-consumer.svg)](https://travis-ci.org/pwrnrd/aws-sqs-consumer)
 [![Code Climate](https://codeclimate.com/github/pwrnrd/aws-sqs-consumer/badges/gpa.svg)](https://codeclimate.com/github/BBC/sqs-consumer)
 [![Test Coverage](https://codeclimate.com/github/pwrnrd/aws-sqs-consumer/badges/coverage.svg)](https://codeclimate.com/github/BBC/sqs-consumer)
 
