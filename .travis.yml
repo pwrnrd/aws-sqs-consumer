@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+    - '10'
+    - '8'
+after_script:
+    - npm run lcov
+    - cat coverage/lcov.info | node_modules/.bin/codeclimate-test-reporter

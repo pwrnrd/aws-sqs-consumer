@@ -1,0 +1,58 @@
+{
+	"name": "@pwrnrd/sqs",
+	"version": "0.0.1",
+	"description": "A Typescript AWS SQS message consumer",
+	"license": "GNU GPLv3",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"__tests__/**/*",
+		"dist/**/*"
+	],
+	"repository": {
+		"type": "git",
+		"url": "ssh://git@github.com/pwrnrd/aws-sqs-consumer.git"
+	},
+	"bugs": {
+		"url": "https://github.com/pwrnrd/aws-sqs-consumer/issues"
+	},
+	"homepage": "https://github.com/pwrnrd/aws-sqs-consumer",
+	"keywords": [
+		"SQS",
+		"queue",
+		"consumer",
+		"producer",
+		"AWS SQS"
+	],
+	"scripts": {
+		"test": "jest --watch --config=\"jest.config.js\"",
+		"start": "nodemon ./src/index.ts --extensions \".ts\",\".tsx\"",
+		"build": "tsc -p tsconfig.json",
+		"prepublish": "npm run build",
+		"pretest": "npm run build",
+		"posttest": "npm run lint",
+		"prepare": "npm run build",
+		"lint": "tsc --noEmit && eslint . --ext .ts --quiet --fix"
+	},
+	"dependencies": {
+		"aws-sdk": "^2.644.0"
+	},
+	"devDependencies": {
+		"@types/jest": "^25.1.4",
+		"@types/node": "^13.9.3",
+		"@typescript-eslint/eslint-plugin": "^2.25.0",
+		"@typescript-eslint/parser": "^2.25.0",
+		"codeclimate-test-reporter": "^0.5.1",
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.10.1",
+		"eslint-plugin-import": "^2.20.1",
+		"eslint-plugin-jest": "^23.8.2",
+		"eslint-plugin-prettier": "^3.1.2",
+		"jest": "^25.1.0",
+		"nodemon": "^2.0.2",
+		"prettier": "^2.0.2",
+		"ts-jest": "^25.2.1",
+		"ts-node": "^8.8.1",
+		"typescript": "^3.8.3"
+	}
+}
